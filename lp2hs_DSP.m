@@ -4,8 +4,6 @@ function [B, A] = lp2hs_DSP(w_c, gain, Fs)
 
 T = 1 / Fs;
 
-
-
 w_a = laplace_f_warp(w_c, Fs);
 
 x = w_a / (2 / T);

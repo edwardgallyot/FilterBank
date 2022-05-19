@@ -86,7 +86,7 @@ y_n = filter(B, A, x_n);
 
 output = real(y_n);
 
-audiowrite(['HighCut.wav'], output, Fs);
+audiowrite('out.wav', output, Fs);
 
 hz = (hz_hp .* hz_lp .* hz_ls .* hz_hs .* hz_mb);
 
@@ -116,12 +116,20 @@ hold off;
 % [B, A] = lp2lp_DSP(w_a, Fs); % Use our own lp prototype converter
 % 
 % [hz, f] = freqz(B, A, 22050);
-
+% 
 plot(f, 360/(2*pi)*angle(hz));
-
+% 
 title('Phase Response'); xlabel('Frequency [Hz]'), ylabel('Phase (Degrees)');
 
 set(gca,'Xscale','log');
+% % 
+% w_c = highCutoffFrequency; 
+% 
+% w_a = laplace_f_warp(w_c, Fs); % Warp the frequency
+% 
+% [B, A] = lp2lp_DSP(w_a, Fs); % Use our own lp prototype converter
+% 
+% zplane(B, A);
 
 end
 
